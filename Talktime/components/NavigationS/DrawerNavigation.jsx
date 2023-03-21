@@ -1,5 +1,5 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState } from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Switch } from "react-native";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
 import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, MaterialCommunityIcons} from "react-native-vector-icons";
 import Calls from "../ScreenS/Calls";
@@ -17,7 +17,7 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
     return (
         <DrawerItem
             icon={({ focused, color, size }) => (
-                <IconG color={color} size={size} name={ IconN } />
+                <IconG color={"grey"} size={size} name={ IconN } />
             )}
             label={() => <Text style={styles.drawerText}>{ labelT }</Text>}
             onPress={() => navigation.navigate(`${navigateTo}`)}
@@ -29,8 +29,14 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
 
 function CustomDrawerContent(props) {
     const { navigation } = props;
+
+    const onToggle = () => {
+        setOn(pre => !pre);
+        console.log("toggled");
+    };
+
     return (
-        <DrawerContentScrollView {...props}>
+        <DrawerContentScrollView {...props} style={ styles.drawerContScroll}>
 
             <View style={styles.view1}>
                 <View>
@@ -44,8 +50,16 @@ function CustomDrawerContent(props) {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <TouchableOpacity>
-                        <Text>Change Theme</Text>
+                    <TouchableOpacity style={styles.toggle1}>
+                        {/* <Text style={styles.toggle2}>Change Theme</Text> */}
+                        <Switch
+                            trackColor={{ false: '#767577', true: '#81b0ff' }}
+                            thumbColor={true ? '#f5dd4b' : '#f4f3f4'}
+                            ios_backgroundColor="#3e3e3e"
+                            onValueChange={() => (false)}
+                            value={true}
+                            disabled={false}
+                        />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -85,7 +99,10 @@ const DrawerNavigation = () => {
 export default DrawerNavigation;
 
 
-const styles = StyleSheet.create({
+const lightTheme = StyleSheet.create({
+    drawerContScroll: {
+        backgroundColor:"white"
+    },
     view1: {
         flex: 1,
         borderWidth: 2,
@@ -93,6 +110,11 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         padding: 15,
         backgroundColor:"rgb(0, 153, 255)"
+    },
+    toggle1: {
+    },
+    toggle2: {
+        color:"white"
     },
     profileImage:{
         width: 70,
@@ -110,6 +132,48 @@ const styles = StyleSheet.create({
     },
     drawerText: {
         fontWeight: 600,
-        fontSize:14
+        fontSize: 14,
+        color:"black"
     }
 });
+
+
+const darkTheme = StyleSheet.create({
+    drawerContScroll: {
+        backgroundColor:"rgb(51, 51, 51)"
+    },
+    view1: {
+        flex: 1,
+        borderWidth: 2,
+        flexDirection: "row",
+        justifyContent:"space-between",
+        padding: 15,
+        backgroundColor:"black"
+    },
+    toggle1: {
+    },
+    toggle2: {
+        color:"white"
+    },
+    profileImage:{
+        width: 70,
+        height:70,
+        borderRadius:100
+    },
+    userName: {
+        fontWeight: 700,
+        margin: 5,
+        color:"white"
+    },
+    userNumber: {
+        color: "white",
+        fontSize:11
+    },
+    drawerText: {
+        fontWeight: 600,
+        fontSize: 14,
+        color:"white"
+    }
+});
+
+const styles = lightTheme ;
