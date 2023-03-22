@@ -6,6 +6,7 @@ import Calls from "../ScreenS/Calls";
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
 import { toggle1 } from "../ReduxToolkitS/ThemeSlice";
+import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorageS/AsyncStorage";
 
 
 //  group, contacts, (3- call, location), bookmark, (3- settings), add-user, progress-question
@@ -42,8 +43,9 @@ function CustomDrawerContent(props) {
     On = theme;
     const styles = On ? lightTheme : darkTheme;
 
-    const onToggle = () => {
+    const onToggle = async() => {
         dispatch(toggle1());
+        await AsyncSet("theme", !theme);
     };
 
     return (
