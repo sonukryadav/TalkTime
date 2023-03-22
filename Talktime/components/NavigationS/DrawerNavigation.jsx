@@ -4,6 +4,8 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerI
 import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, MaterialCommunityIcons} from "react-native-vector-icons";
 import Calls from "../ScreenS/Calls";
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from "react-redux";
+import { toggle1 } from "../ReduxToolkitS/ThemeSlice";
 
 
 //  group, contacts, (3- call, location), bookmark, (3- settings), add-user, progress-question
@@ -11,9 +13,14 @@ import { useNavigation } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 
+var On;
 
 const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
     const navigation = useNavigation();
+
+    On = useSelector((state) => state.Theme.theme);
+    const styles = On ? lightTheme : darkTheme;
+
     return (
         <DrawerItem
             icon={({ focused, color, size }) => (
@@ -29,10 +36,14 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
 
 function CustomDrawerContent(props) {
     const { navigation } = props;
+    const { theme } = useSelector((state) => state.Theme);
+    const dispatch = useDispatch();
+
+    On = theme;
+    const styles = On ? lightTheme : darkTheme;
 
     const onToggle = () => {
-        setOn(pre => !pre);
-        console.log("toggled");
+        dispatch(toggle1());
     };
 
     return (
@@ -56,8 +67,8 @@ function CustomDrawerContent(props) {
                             trackColor={{ false: '#767577', true: '#81b0ff' }}
                             thumbColor={true ? '#f5dd4b' : '#f4f3f4'}
                             ios_backgroundColor="#3e3e3e"
-                            onValueChange={() => (false)}
-                            value={true}
+                            onValueChange={() => onToggle()}
+                            value={theme}
                             disabled={false}
                         />
                     </TouchableOpacity>
@@ -80,6 +91,10 @@ function CustomDrawerContent(props) {
 
 
 const DrawerNavigation = () => {
+
+    On = useSelector((state) => state.Theme.theme);
+    const styles = On ? lightTheme : darkTheme;
+
     return (
         <>
             <Drawer.Navigator
@@ -175,5 +190,3 @@ const darkTheme = StyleSheet.create({
         color:"white"
     }
 });
-
-const styles = lightTheme ;
