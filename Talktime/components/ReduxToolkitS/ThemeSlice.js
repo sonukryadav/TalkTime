@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AsyncSet, AsyncGet, AsyncDelete } from "../AsyncStorageS/AsyncStorage";
 
 const initialState = {
     theme: true,

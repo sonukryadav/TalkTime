@@ -10,6 +10,7 @@ import TalktimeFeatures from "../ScreenS/TalktimeFeatures";
 import Contacts from "../ScreenS/Contacts";
 import Account from "../ScreenS/Account";
 import DrawerNavigation from './DrawerNavigation';
+import Search from "../ScreenS/Search";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ const StackNavigation = () => {
                 <Stack.Screen name="inviteFriends" component={ InviteFriends} options={{ title: 'Invite Friends' }} />
                 <Stack.Screen name="talktimeFeatures" component={TalktimeFeatures} options={{ title: 'Talktime Features' }} />
                 <Stack.Screen name="account" component={Account} options={{ title: 'Profile' }} />
+                <Stack.Screen name="search" component={Search} options={{ title: 'Search' }} />
             </Stack.Navigator>
         </>
     )

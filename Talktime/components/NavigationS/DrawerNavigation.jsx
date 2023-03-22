@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity, Switch } from "react-native";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
-import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, MaterialCommunityIcons} from "react-native-vector-icons";
+import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, FontAwesome5} from "react-native-vector-icons";
 import Calls from "../ScreenS/Calls";
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
@@ -19,7 +19,7 @@ var On;
 const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
     const navigation = useNavigation();
 
-    On = useSelector((state) => state.Theme.theme);
+    On = useSelector((state) => state.theme.theme);
     const styles = On ? lightTheme : darkTheme;
 
     return (
@@ -37,7 +37,7 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
 
 function CustomDrawerContent(props) {
     const { navigation } = props;
-    const { theme } = useSelector((state) => state.Theme);
+    const { theme } = useSelector((state) => state.theme);
     const dispatch = useDispatch();
 
     On = theme;
@@ -92,9 +92,9 @@ function CustomDrawerContent(props) {
 
 
 
-const DrawerNavigation = () => {
+const DrawerNavigation = ({ navigation }) => {
 
-    On = useSelector((state) => state.Theme.theme);
+    On = useSelector((state) => state.theme.theme);
     const styles = On ? lightTheme : darkTheme;
 
     return (
@@ -107,7 +107,14 @@ const DrawerNavigation = () => {
                 defaultStatus={"closed"}
                 drawerContent={(props) => (<CustomDrawerContent {...props} />)}
             >
-                <Drawer.Screen name="home" component={Calls} options={{title:"Talktime"}} />
+                <Drawer.Screen name="home" component={Calls} options={{
+                    headerTitle: "Talktime",
+                    headerRight: () => (
+                        <TouchableOpacity onPress={()=>navigation.navigate("search")}>
+                            <FontAwesome5 name="search" size={25} color={On ? "black" : "black"} marginRight={10} />
+                        </TouchableOpacity>
+                    )
+                }} />
             </Drawer.Navigator>
         </>
     );
@@ -151,7 +158,7 @@ const lightTheme = StyleSheet.create({
         fontWeight: 600,
         fontSize: 14,
         color:"black"
-    }
+    },
 });
 
 
