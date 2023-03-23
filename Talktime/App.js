@@ -1,17 +1,20 @@
 import React from "react";
+import { StatusBar } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./navigation/StackNavigation";
 
-import { Navbar } from "./components";
+import { MenuProvider } from "react-native-popup-menu";
 import { AuthContextProvider } from "./contextHelper/authContext";
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Navbar />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <AuthContextProvider>
-        <StackNavigator />
+        <MenuProvider>
+          <StackNavigator />
+        </MenuProvider>
       </AuthContextProvider>
     </NavigationContainer>
   );
