@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "74386830056",
+    "project_id": "talktime-chat",
+    "storage_bucket": "talktime-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74386830056:android:db8bc43fda31569e964f5d",
+        "android_client_info": {
+          "package_name": "com.sonukr1256.Talktime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74386830056-b7rp3tm3sc7qg4aj169at9fo8ehsrhh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO_BIB4bxskTUKCc4GO2VmLgfwp8A6RYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74386830056-b7rp3tm3sc7qg4aj169at9fo8ehsrhh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
