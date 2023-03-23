@@ -2,8 +2,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../contextHelper/authContext";
 
-import { Home, Login, ChatRoom } from "../screens";
+import { Login, ChatRoom, SelectContact } from "../screens";
 import Signup from "../screens/Signup/Signup";
+import TabNavigator from "./TabNavigation";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,8 +20,17 @@ export default function StackNavigator() {
     >
       {user ? (
         <>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="ChatRoom" component={ChatRoom} />
+          <Stack.Screen name="TabNavigator" component={TabNavigator} />
+          <Stack.Screen
+            name="ChatRoom"
+            component={ChatRoom}
+            options={{ headerShown: true }}
+          />
+          <Stack.Screen
+            name="SelectContact"
+            component={SelectContact}
+            options={{ headerShown: true }}
+          />
         </>
       ) : (
         <>
