@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 
 import { Provider } from "react-redux";
 import StackNavigator from "./navigation/StackNavigation";
@@ -15,8 +15,8 @@ export default function App() {
     <Provider store={store}>
       <AuthContextProvider>
         <MenuProvider>
+          <StatusBar backgroundColor="white" barStyle="dark-content" />
           <AppS />
-          android.os.Bundle;
         </MenuProvider>
       </AuthContextProvider>
     </Provider>
