@@ -23,6 +23,7 @@
     "npm": "^9.6.2",
     "react": "18.2.0",
     "react-native": "^0.71.4",
+    "react-native-avatar-generator": "^1.0.2",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-pager-view": "6.1.2",
     "react-native-paper": "^5.5.0",

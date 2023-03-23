@@ -94,7 +94,8 @@ function CustomDrawerContent(props) {
 
 const DrawerNavigation = ({ navigation }) => {
 
-    On = useSelector((state) => state.theme.theme);
+    const { theme } = useSelector((state) => state.theme);
+    On = theme;
     const styles = On ? lightTheme : darkTheme;
 
     return (
@@ -103,6 +104,10 @@ const DrawerNavigation = ({ navigation }) => {
                 screenOptions={{
                 drawerPosition: "left",
                 drawerType: "front",
+                headerStyle: {
+                    backgroundColor: theme ? 'white' : 'black'
+                },
+                    headerTintColor: theme ? "black" : "white",
                 }}
                 defaultStatus={"closed"}
                 drawerContent={(props) => (<CustomDrawerContent {...props} />)}
@@ -111,7 +116,7 @@ const DrawerNavigation = ({ navigation }) => {
                     headerTitle: "Talktime",
                     headerRight: () => (
                         <TouchableOpacity onPress={()=>navigation.navigate("search")}>
-                            <FontAwesome5 name="search" size={25} color={On ? "black" : "black"} marginRight={10} />
+                            <FontAwesome5 name="search" size={25} color={On ? "black" : "white"} marginRight={10} />
                         </TouchableOpacity>
                     )
                 }} />

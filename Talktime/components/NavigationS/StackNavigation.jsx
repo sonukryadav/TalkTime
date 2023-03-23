@@ -11,13 +11,22 @@ import Contacts from "../ScreenS/Contacts";
 import Account from "../ScreenS/Account";
 import DrawerNavigation from './DrawerNavigation';
 import Search from "../ScreenS/Search";
+import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
+    const { theme } = useSelector((state)=>state.theme);
     return (
         <>
-            <Stack.Navigator>
+            <Stack.Navigator
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: theme ? 'white' : 'black'
+                    },
+                    headerTintColor: theme ? "black" : "white",
+                }}
+            >
                 <Stack.Screen name="stackHome" component={DrawerNavigation} options={{ headerShown: false, }} />
                 <Stack.Screen name="newGroup" component={ NewGroup} options={{ title:"New Group" }} />
                 <Stack.Screen name="contacts" component={Contacts} options={{ title: 'Contacts' }} />
