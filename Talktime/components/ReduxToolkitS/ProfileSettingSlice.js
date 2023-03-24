@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     firstName: "firstName",
     lastName: "lastName",
-    profilePicture: "https://cdn.pixabay.com/photo/2016/11/22/23/44/porsche-1851246__340.jpg",
+    profilePicture: "",
     mobileNumber: 123456789,
     userAccountName: "userAccountName",
     bio: "bio sd kd smdn csdc",
@@ -23,8 +23,11 @@ export const profileSettingSlice = createSlice({
         overlay1Fun: (state) => {
             state.overly1 = !state.overly1;
         },
+        pictureClick: (state, action) => {
+            state.profilePicture = action.payload;
+        },
     }
 });
 
-export const { profileUpdate, overlay1Fun } = profileSettingSlice.actions;
+export const { profileUpdate, overlay1Fun, pictureClick } = profileSettingSlice.actions;
 export default profileSettingSlice.reducer;

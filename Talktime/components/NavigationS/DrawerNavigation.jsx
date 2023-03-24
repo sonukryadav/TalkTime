@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity, Switch } from "react-native";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navigation/drawer";
-import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, FontAwesome5} from "react-native-vector-icons";
+import { MaterialIcons, AntDesign, Ionicons, FontAwesome, Entypo, FontAwesome5, MaterialCommunityIcons} from "react-native-vector-icons";
 import Calls from "../ScreenS/Calls";
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from "react-redux";
@@ -38,6 +38,7 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
 function CustomDrawerContent(props) {
     const { navigation } = props;
     const { theme } = useSelector((state) => state.theme);
+    const { profilePicture } = useSelector((state) => state.profile);
     const dispatch = useDispatch();
 
     On = theme;
@@ -53,14 +54,20 @@ function CustomDrawerContent(props) {
 
             <View style={styles.view1}>
                 <View>
-                    <TouchableOpacity onPress={()=>navigation.navigate("account")}>
+                    {profilePicture ?
+                        <TouchableOpacity onPress={()=>navigation.navigate("settings")}>
                         <Image
-                            source={{ uri: `https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg` }}
+                            source={{ uri: profilePicture }}
                             style={ styles.profileImage }
-                        />
+                        /></TouchableOpacity>:
+                        <View style={styles.v7}>
+                            <TouchableOpacity onPress={()=>navigation.navigate("settings")}>
+                                <MaterialCommunityIcons name="camera-plus" size={55} color={"white"} />
+                            </TouchableOpacity>
+                        </View>
+                        }
                         <Text style={styles.userName}> Sonu kr</Text>
                         <Text style={ styles.userNumber}> +91 9628407182</Text>
-                    </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity style={styles.toggle1}>
@@ -146,9 +153,11 @@ const lightTheme = StyleSheet.create({
         color:"white"
     },
     profileImage:{
-        width: 70,
-        height:70,
-        borderRadius:100
+        width: 80,
+        height:80,
+        borderRadius: 100,
+        borderWidth: 2,
+        borderColor:"white"
     },
     userName: {
         fontWeight: 700,
@@ -164,6 +173,13 @@ const lightTheme = StyleSheet.create({
         fontSize: 14,
         color:"black"
     },
+    v7: {
+        backgroundColor: "rgb(51, 153, 255)",
+        padding: 10,
+        borderRadius: 50,
+        borderWidth: 3,
+        borderColor:"black"
+    }
 });
 
 
@@ -185,9 +201,11 @@ const darkTheme = StyleSheet.create({
         color:"white"
     },
     profileImage:{
-        width: 70,
-        height:70,
-        borderRadius:100
+        width: 80,
+        height:80,
+        borderRadius: 100,
+        borderWidth: 2,
+        borderColor:"white"
     },
     userName: {
         fontWeight: 700,
@@ -202,5 +220,12 @@ const darkTheme = StyleSheet.create({
         fontWeight: 600,
         fontSize: 14,
         color:"white"
+    },
+    v7: {
+        backgroundColor: "rgb(51, 153, 255)",
+        padding: 10,
+        borderRadius: 50,
+        borderWidth: 3,
+        borderColor:"white"
     }
 });

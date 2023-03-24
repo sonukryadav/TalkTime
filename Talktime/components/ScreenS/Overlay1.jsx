@@ -50,16 +50,7 @@ const Overlay1 = () => {
                         </View>
                     </View>
                     <Button
-                        icon={
-                            <Icon
-                                name="wrench"
-                                type="font-awesome"
-                                color="white"
-                                size={25}
-                                iconStyle={{ marginRight: 10 }}
-                            />
-                        }
-                        title="Start Building"
+                        title="Close"
                         onPress={toggleOverlay}
                     />
                 </View>
