@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity} from "react-native";
 
-const ProfilePicUpload = () => {
+const GalleryPic = () => {
     return (
         <View>
         </View>
     )
 }
 
-export default ProfilePicUpload;
+export default GalleryPic;
