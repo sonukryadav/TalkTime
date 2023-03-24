@@ -1,11 +1,15 @@
 import React from 'react';
-import { View , Text} from "react-native";
+import { View, Text } from "react-native";
+import ProfilePicUpload from './ProfilePicUpload';
 
 const Calls = () => {
     return (
-        <View>
-            <Text>Calls</Text>
-        </View>
+        <>
+            <View>
+                <Text>Calls</Text>
+                {/* <ProfilePicUpload /> */}
+            </View>
+        </>
     )
 }
 

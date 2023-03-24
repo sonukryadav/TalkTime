@@ -12,6 +12,7 @@ import Account from "../ScreenS/Account";
 import DrawerNavigation from './DrawerNavigation';
 import Search from "../ScreenS/Search";
 import { useSelector } from "react-redux";
+import CameraC from '../ScreenS/CameraC';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const StackNavigation = () => {
                 <Stack.Screen name="talktimeFeatures" component={TalktimeFeatures} options={{ title: 'Talktime Features' }} />
                 <Stack.Screen name="account" component={Account} options={{ title: 'Profile' }} />
                 <Stack.Screen name="search" component={Search} options={{ title: 'Search' }} />
+                <Stack.Screen name="camera" component={CameraC} options={{title : "Camera"}}/>
             </Stack.Navigator>
         </>
     )

@@ -9,7 +9,8 @@ const initialState = {
     userAccountName: "userAccountName",
     bio: "bio sd kd smdn csdc",
     email: "123@gmail.com",
-    password:"********",
+    password: "********",
+    overly1: false,
 }
 
 export const profileSettingSlice = createSlice({
@@ -18,9 +19,12 @@ export const profileSettingSlice = createSlice({
     reducers: {
         profileUpdate: (state, action) => {
             state = {...action.payload}
-        }
+        },
+        overlay1Fun: (state) => {
+            state.overly1 = !state.overly1;
+        },
     }
 });
 
-export const { profileUpdate } = profileSettingSlice.actions;
+export const { profileUpdate, overlay1Fun } = profileSettingSlice.actions;
 export default profileSettingSlice.reducer;

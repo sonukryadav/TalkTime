@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from "react-native";
 import UserAvatar from "react-native-avatar-generator";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import PtoAnim from './PtoAnim';
+import  Overlay1  from "./Overlay1";
+import { overlay1Fun } from '../ReduxToolkitS/ProfileSettingSlice';
 
 const Settings = () => {
     const { firstName, lastName, profilePicture, mobileNumber, userAccountName, bio, email, password } = useSelector((state) => state.profile);
+    const dispatch = useDispatch();
+
     return (
         <ScrollView style={styles.v0}>
             <View style={styles.v1}>
@@ -36,7 +39,7 @@ const Settings = () => {
                 <View style={styles.v5}>
                     <View style={styles.v6}></View>
                     <View style={styles.v7}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>dispatch(overlay1Fun())}>
                             <MaterialCommunityIcons name="camera-plus" size={40} color={"white"} />
                         </TouchableOpacity>
                     </View>
@@ -74,10 +77,9 @@ const Settings = () => {
                         </View>
                     </View>
                 </View>
-
             </View>
-            {/* <PtoAnim /> */}
-        </ScrollView>
+            <Overlay1 />
+            </ScrollView>
     )
 }
 
