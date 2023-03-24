@@ -8,8 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 
 const Overlay1 = () => {
     const { overly1 } = useSelector((state) => state.profile);
+    const { theme } = useSelector((state) => state.theme);
     const dispatch = useDispatch();
     const navigation = useNavigation();
+
+    const styles = theme ? lightTheme : darkTheme;
 
     const toggleOverlay = () => {
         dispatch(overlay1Fun());
@@ -59,10 +62,48 @@ const Overlay1 = () => {
     );
 };
 
-const styles = StyleSheet.create({
+const lightTheme = StyleSheet.create({
     v1: {
         padding: 20,
         justifyContent: "center",
+        backgroundColor:"white",
+    },
+    v2: {
+        flex: 0,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        marginVertical:40,
+    },
+    v3: {
+        backgroundColor: "rgb(51, 153, 255)",
+        padding: 15,
+        borderRadius: 70,
+        borderWidth: 3,
+        // borderColor:"black",
+        borderLeftColor: "white",
+        borderRightColor: "white",
+    },
+    t1: {
+        textAlign: "center",
+        margin: 10,
+        fontSize: 14,
+        fontWeight: 700,
+        color:"grey"
+    },
+    textPrimary: {
+        marginVertical: 20,
+        textAlign: 'center',
+        fontSize: 22,
+        fontWeight: 700
+    }
+});
+
+
+const darkTheme = StyleSheet.create({
+    v1: {
+        padding: 20,
+        justifyContent: "center",
+        backgroundColor:"black",
     },
     v2: {
         flex: 0,
@@ -77,7 +118,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         // borderColor:"black",
         borderLeftColor: "black",
-        borderRightColor: "red",
+        borderRightColor: "white",
     },
     t1: {
         textAlign: "center",
