@@ -21,11 +21,7 @@ export default function StackNavigator() {
       {user ? (
         <>
           <Stack.Screen name="TabNavigator" component={TabNavigator} />
-          <Stack.Screen
-            name="ChatRoom"
-            component={ChatRoom}
-            options={{ headerShown: true }}
-          />
+          <Stack.Screen name="ChatRoom" component={ChatRoom} />
           <Stack.Screen
             name="SelectContact"
             component={SelectContact}
