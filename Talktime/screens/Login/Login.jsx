@@ -19,7 +19,7 @@ const background_image =
   "https://firebasestorage.googleapis.com/v0/b/mymasai-school.appspot.com/o/project_files%2Fev2-image%2Fbackground3.jpg?alt=media&token=ab4e22d7-656a-48a7-9ecd-a4f2c73fa58e";
 
 export default function Login({ navigation }) {
-  const [number, setNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -27,18 +27,24 @@ export default function Login({ navigation }) {
 
   const handleLogin = async () => {
     try {
-      if (number && password) {
-        let response = await firestore().collection("Users").doc(number).get();
+      if (phoneNumber && password) {
+        let response = await firestore()
+          .collection("Users")
+          .where("phoneNumber", "==", phoneNumber)
+          .get();
 
-        let responseData = response.data();
+        let id = response.docs[0].id;
+        let responseData = response.docs[0]?.data();
 
         if (!responseData || responseData.password != password) {
           Alert.alert("Error", "Invalid credentials");
+          return;
         }
 
         delete responseData.password;
+        responseData.id = id;
 
-        loginUser({ ...responseData, number });
+        loginUser({ ...responseData });
       } else {
         Alert.alert("Error", "Please fill all the details");
       }
@@ -60,10 +66,10 @@ export default function Login({ navigation }) {
             Enter your mobile number and password to continue
           </Text>
           <TextInput
-            value={number}
+            value={phoneNumber}
             inputMode="numeric"
             placeholder="Enter mobile number"
-            onChangeText={setNumber}
+            onChangeText={setPhoneNumber}
             style={styles.inputOutline}
           />
           <View style={styles.inputPasswordContainer}>
