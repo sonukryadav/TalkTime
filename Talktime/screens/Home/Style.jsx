@@ -5,9 +5,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-  fallback: {
+  welcomeContainer: {
     flex: 1,
-    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   welcomeText: {
     fontSize: 17,
@@ -20,5 +21,25 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
     margin: 10,
+    position: "absolute",
+    bottom: 0,
+    right: 5,
+  },
+  contactContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderColor: "silver",
+    padding: 10,
+  },
+  contactImageButton: {},
+  contactText: {
+    fontSize: 18,
+    flex: 1,
+  },
+  time: {
+    fontSize: 12,
+    color: "grey",
+    alignSelf: "flex-end",
   },
 });
