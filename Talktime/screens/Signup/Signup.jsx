@@ -23,30 +23,45 @@ export default function Signup({ navigation }) {
   const [password, setPassword] = useState("");
 
   const handleSignup = async () => {
-    if (name && number && password) {
-      let duplicateCheck = await firestore()
-        .collection("Users")
-        .doc(number)
-        .get();
+    try {
+      if (name && number && password) {
+        let duplicateCheck = await firestore()
+          .collection("Contacts")
+          .doc(number)
+          .get();
 
-      if (duplicateCheck.exists) {
-        Alert.alert("Error", "This mobile number is already registered");
-        return;
+        if (duplicateCheck.exists) {
+          Alert.alert("Error", "This mobile number is already registered");
+          return;
+        }
+
+        await firestore().collection("Users").add({
+          name,
+          number,
+          password,
+        });
+
+        await firestore().collection("Contacts").doc(number).set({
+          dummy: null,
+        });
+
+        Alert.alert(
+          "Success",
+          "You have successfully registered into Talktime",
+          [
+            {
+              text: "OK",
+              onPress: () => navigation.navigate("Login"),
+            },
+          ]
+        );
+      } else {
+        Alert.alert("Error", "Please fill all the details");
       }
-
-      await firestore().collection("Users").doc(number).set({
-        name,
-        password,
-      });
-
-      Alert.alert("Success", "You have successfully registered into Talktime", [
-        {
-          text: "OK",
-          onPress: () => navigation.navigate("Login"),
-        },
-      ]);
-    } else {
-      Alert.alert("Error", "Please fill all the details");
+    } catch (error) {
+      Alert.alert("Error", "Somethign went wrong");
+      console.log("Error in handle Signup");
+      console.log(error);
     }
   };
 
