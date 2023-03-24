@@ -39,6 +39,8 @@ export default function Login({ navigation }) {
         delete responseData.password;
 
         loginUser({ ...responseData, number });
+      } else {
+        Alert.alert("Error", "Please fill all the details");
       }
     } catch (error) {
       Alert.alert("Error", "Something went wrong");
