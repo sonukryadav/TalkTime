@@ -37,7 +37,6 @@ export default function Signup({ navigation }) {
       await firestore().collection("Users").doc(number).set({
         name,
         password,
-        chat_contacts: [],
       });
 
       Alert.alert("Success", "You have successfully registered into Talktime", [
