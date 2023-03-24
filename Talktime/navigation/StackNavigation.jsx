@@ -16,6 +16,7 @@ export default function StackNavigator() {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        animation: "slide_from_right",
       }}
     >
       {user ? (
