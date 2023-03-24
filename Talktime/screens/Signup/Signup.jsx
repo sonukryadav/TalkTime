@@ -19,29 +19,29 @@ const background_image =
 
 export default function Signup({ navigation }) {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignup = async () => {
     try {
-      if (name && number && password) {
+      if (name && phoneNumber && password) {
         let duplicateCheck = await firestore()
           .collection("Contacts")
-          .doc(number)
+          .doc(phoneNumber)
           .get();
 
         if (duplicateCheck.exists) {
-          Alert.alert("Error", "This mobile number is already registered");
+          Alert.alert("Error", "This phone number is already registered");
           return;
         }
 
         await firestore().collection("Users").add({
           name,
-          number,
+          phoneNumber,
           password,
         });
 
-        await firestore().collection("Contacts").doc(number).set({
+        await firestore().collection("Contacts").doc(phoneNumber).set({
           dummy: null,
         });
 
@@ -80,10 +80,10 @@ export default function Signup({ navigation }) {
             style={styles.inputOutline}
           />
           <TextInput
-            value={number}
+            value={phoneNumber}
             inputMode="numeric"
             placeholder="Enter mobile number"
-            onChangeText={setNumber}
+            onChangeText={setPhoneNumber}
             style={styles.inputOutline}
           />
 
