@@ -22,7 +22,7 @@ const TabNavigator = () => {
     <View style={{ flex: 1 }}>
       <View
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#44cefc",
           padding: 10,
           justifyContent: "space-between",
           flexDirection: "row",
@@ -55,7 +55,16 @@ const TabNavigator = () => {
           </MenuOptions>
         </Menu>
       </View>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: {
+            backgroundColor: "#44cefc",
+          },
+          tabBarIndicatorStyle: {
+            backgroundColor: "white",
+          },
+        }}
+      >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Status" component={Status} />
       </Tab.Navigator>
