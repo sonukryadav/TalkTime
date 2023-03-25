@@ -1,28 +1,59 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const WIDTH = Dimensions.get("window").width;
 
 export const styles = StyleSheet.create({
   main: {
     flex: 1,
   },
-  chatList: {
+  imageBackground: {
     flex: 1,
   },
+  chatList: {},
   messageSent: {
     alignSelf: "flex-end",
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: "#44cefc",
   },
   messageRecieved: {
     alignSelf: "flex-start",
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: "#fcd872",
   },
   messageContainer: {
-    backgroundColor: "#FFC93C",
     padding: 5,
+    paddingHorizontal: 10,
     marginVertical: 5,
+    marginHorizontal: 15,
+    position: "relative",
+    maxWidth: WIDTH - 150,
   },
-  message: {},
+  message: {
+    fontSize: 15,
+  },
+  triangle: {},
+  leftTriangle: {
+    position: "absolute",
+    left: -10,
+    top: 0,
+    borderRightWidth: 12,
+    borderRightColor: "#fcd872",
+    borderBottomWidth: 12,
+    borderBottomColor: "transparent",
+  },
+  rightTriangle: {
+    position: "absolute",
+    right: -10,
+    top: 0,
+    borderLeftWidth: 12,
+    borderLeftColor: "#44cefc",
+    borderBottomWidth: 15,
+    borderBottomColor: "transparent",
+  },
   time: {
     fontSize: 12,
     color: "grey",
@@ -30,7 +61,6 @@ export const styles = StyleSheet.create({
   chatInputContainer: {
     padding: 10,
     flexDirection: "row",
-    backgroundColor: "white",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
   },
@@ -41,6 +71,7 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     padding: 10,
     borderColor: "silver",
+    backgroundColor: "white",
   },
   sendButton: {
     backgroundColor: "#44cefc",

@@ -5,14 +5,16 @@ import {
   FlatList,
   TextInput,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 
-import { useNavigation } from "@react-navigation/native";
 import firestore, { firebase } from "@react-native-firebase/firestore";
-import { Feather } from "@expo/vector-icons";
+import { Feather, EvilIcons } from "@expo/vector-icons";
 
 import AuthContext from "../../contextHelper/authContext";
+
+const Background_light = require("../../resources/images/chat-background-light.jpg");
 
 import { styles } from "./Style";
 
@@ -42,10 +44,24 @@ export default function ChatRoom({ navigation, route }) {
     console.error(error);
   };
 
+  function headerRight() {
+    return (
+      <View>
+        <TouchableOpacity style={styles.contactImageButton}>
+          <EvilIcons name="user" size={40} color="black" />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
       title: reciever.name,
+      headerRight: headerRight,
+      headerStyle: {
+        backgroundColor: "#44cefc",
+      },
     });
   }, []);
 
@@ -83,8 +99,6 @@ export default function ChatRoom({ navigation, route }) {
     } catch (error) {}
   };
 
-  console.log(sender, reciever);
-
   const renderItem = ({ item }) => {
     let time = item.timestamp.toDate().toLocaleTimeString(undefined, {
       hour: "2-digit",
@@ -99,6 +113,7 @@ export default function ChatRoom({ navigation, route }) {
           isSender ? styles.messageSent : styles.messageRecieved,
         ]}
       >
+        <View style={isSender ? styles.rightTriangle : styles.leftTriangle} />
         <Text style={styles.message}>{item.message}</Text>
         <Text
           style={[
@@ -114,25 +129,26 @@ export default function ChatRoom({ navigation, route }) {
 
   return (
     <View style={styles.main}>
-      <View style={styles.chatList}>
+      <ImageBackground source={Background_light} style={styles.imageBackground}>
         <FlatList
           data={chats}
           renderItem={renderItem}
           inverted={true}
           keyExtractor={({ id }) => id}
+          style={styles.chatList}
         />
-      </View>
-      <View style={styles.chatInputContainer}>
-        <TextInput
-          value={message}
-          onChangeText={setMessage}
-          placeholder="Send a message"
-          style={styles.chatInput}
-        />
-        <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
-          <Feather name="send" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
+        <View style={styles.chatInputContainer}>
+          <TextInput
+            value={message}
+            onChangeText={setMessage}
+            placeholder="Send a message"
+            style={styles.chatInput}
+          />
+          <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
+            <Feather name="send" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
