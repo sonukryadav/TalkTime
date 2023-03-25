@@ -10,7 +10,7 @@ import { AuthContextProvider } from "./contextHelper/authContext";
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar backgroundColor="#44cefc" barStyle="dark-content" />
       <AuthContextProvider>
         <MenuProvider>
           <StackNavigator />
