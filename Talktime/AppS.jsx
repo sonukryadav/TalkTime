@@ -7,6 +7,8 @@ import { toggle1, toggle2} from "./components/ReduxToolkitS/ThemeSlice";
 import { AsyncSet, AsyncGet, AsyncDelete } from "./components/AsyncStorageS/AsyncStorage";
 import * as Contacts from "expo-contacts";
 import { getContacts } from "./components/ReduxToolkitS/ContactSlice"
+import { profileUpdate } from "./components/ReduxToolkitS/ProfileSettingSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const AppS = () => {
@@ -16,6 +18,15 @@ const AppS = () => {
         (async() => {
             let val = await AsyncGet("theme");
             dispatch(toggle2(val));
+        })();
+    }, []);
+
+    useEffect(() => {
+
+        (async () => {
+            let dd = await getData();
+            dispatch(profileUpdate(dd));
+            console.log(dd);
         })();
     }, []);
 
@@ -31,6 +42,15 @@ const AppS = () => {
             }
         })();
     }, []);
+
+    const getData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem("profile");
+            return jsonValue != null ? JSON.parse(jsonValue) : null;
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     return (
         <>

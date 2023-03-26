@@ -38,7 +38,7 @@ const DItem = ({ IconG, IconN, labelT, navigateTo }) => {
 function CustomDrawerContent(props) {
     const { navigation } = props;
     const { theme } = useSelector((state) => state.theme);
-    const { profilePicture } = useSelector((state) => state.profile);
+    const { profilePicture, firstName, lastName, mobileNumber} = useSelector((state) => state.profile);
     const dispatch = useDispatch();
 
     On = theme;
@@ -66,8 +66,8 @@ function CustomDrawerContent(props) {
                             </TouchableOpacity>
                         </View>
                         }
-                        <Text style={styles.userName}> Sonu kr</Text>
-                        <Text style={ styles.userNumber}> +91 9628407182</Text>
+                    <Text style={styles.userName}> { firstName}</Text>
+                    <Text style={styles.userNumber}> { mobileNumber}</Text>
                 </View>
                 <View>
                     <TouchableOpacity style={styles.toggle1}>

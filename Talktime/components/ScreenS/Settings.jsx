@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from "rea
 import UserAvatar from "react-native-avatar-generator";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import  Overlay1  from "./Overlay1";
-import { overlay1Fun } from '../ReduxToolkitS/ProfileSettingSlice';
+import Overlay1 from "./Overlay1";
+import Overlay2 from "./Overlay2";
+import { overlay1Fun, overlay2Fun } from "../ReduxToolkitS/ProfileSettingSlice";
 
 const Settings = () => {
     const { firstName, lastName, profilePicture, mobileNumber, userAccountName, bio, email, password } = useSelector((state) => state.profile);
     const dispatch = useDispatch();
+    const [sh, setSh] = React.useState(false);
 
     return (
         <ScrollView style={styles.v0}>
@@ -67,18 +69,24 @@ const Settings = () => {
                     </View>
                     <View style={styles.v11}>
                         <View>
-                            <Text style={styles.t4}>{ password }</Text>
+                            <Text style={styles.t4}>{ sh ?  password : "**********" }</Text>
                             <Text style={styles.t5}>Password</Text>
                         </View>
                         <View>
-                            <TouchableOpacity>
-                                <Text style={styles.t6}>Change</Text>
+                            <TouchableOpacity onPress={()=>setSh((pre)=>!pre)}>
+                                <Text style={styles.t6}>{ sh ?  "Hide" : "Show" }</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
             </View>
+            <View>
+                <TouchableOpacity onPress={()=>dispatch(overlay2Fun())}>
+                    <Text style={styles.t7}>Edit</Text>
+                </TouchableOpacity>
+            </View>
             <Overlay1 />
+            <Overlay2 />
             </ScrollView>
     )
 }
@@ -178,7 +186,17 @@ const styles = StyleSheet.create({
         fontWeight:700,
         letterSpacing:1
     },
-    t7: {},
+    t7: {
+        fontSize: 20,
+        backgroundColor: "rgb(51, 153, 255)",
+        paddingVertical: 8,
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        color: "white",
+        fontWeight:700,
+        letterSpacing: 1,
+        textAlign: "center",
+    },
     t8: {},
     t9: {},
 
