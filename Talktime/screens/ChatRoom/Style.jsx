@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     top: 0,
     borderLeftWidth: 12,
     borderLeftColor: "#44cefc",
-    borderBottomWidth: 15,
+    borderBottomWidth: 12,
     borderBottomColor: "transparent",
   },
   time: {
