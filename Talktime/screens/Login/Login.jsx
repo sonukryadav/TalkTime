@@ -33,6 +33,10 @@ export default function Login({ navigation }) {
           .where("phoneNumber", "==", phoneNumber)
           .get();
 
+        if (response.docs.length == 0) {
+          throw new Error("No user with given number found");
+        }
+
         let id = response.docs[0].id;
         let responseData = response.docs[0]?.data();
 
@@ -49,7 +53,7 @@ export default function Login({ navigation }) {
         Alert.alert("Error", "Please fill all the details");
       }
     } catch (error) {
-      Alert.alert("Error", "Something went wrong");
+      Alert.alert("Error", error.message);
       console.log("Error in login handleLogin");
       console.log(error);
     }

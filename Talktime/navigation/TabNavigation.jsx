@@ -1,26 +1,32 @@
-import { useContext } from "react";
-import { Text, View } from "react-native";
-
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {
-  Menu,
-  MenuOption,
-  MenuOptions,
-  MenuTrigger,
-} from "react-native-popup-menu";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import AuthContext from "../contextHelper/authContext";
 import { Home, Status } from "../screens";
 
 const Tab = createMaterialTopTabNavigator();
 
 const TabNavigator = () => {
-  const { logoutUser } = useContext(AuthContext);
-
   return (
-    <View style={{ flex: 1 }}>
-      <View
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: "#44cefc",
+        },
+        tabBarIndicatorStyle: {
+          backgroundColor: "white",
+        },
+      }}
+    >
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Status" component={Status} />
+    </Tab.Navigator>
+  );
+};
+
+export default TabNavigator;
+
+/*
+
+<View
         style={{
           backgroundColor: "#44cefc",
           padding: 10,
@@ -55,21 +61,5 @@ const TabNavigator = () => {
           </MenuOptions>
         </Menu>
       </View>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarStyle: {
-            backgroundColor: "#44cefc",
-          },
-          tabBarIndicatorStyle: {
-            backgroundColor: "white",
-          },
-        }}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Status" component={Status} />
-      </Tab.Navigator>
-    </View>
-  );
-};
 
-export default TabNavigator;
+*/

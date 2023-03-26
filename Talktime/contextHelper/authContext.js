@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
     readData(asyncStorageKey)
       .then((response) => {
         if (response) {
-          setUser(JSON.parse(response));
+          setUser({ ...JSON.parse(response) });
         }
       })
       .catch((error) => {
