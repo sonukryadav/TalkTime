@@ -11,6 +11,15 @@ import React, { useContext, useEffect, useState } from "react";
 
 import firestore, { firebase } from "@react-native-firebase/firestore";
 import { Feather, EvilIcons } from "@expo/vector-icons";
+import {
+  Menu,
+  MenuProvider,
+  MenuOptions,
+  MenuTrigger,
+  renderers,
+} from "react-native-popup-menu";
+
+const { Popover } = renderers;
 
 import AuthContext from "../../contextHelper/authContext";
 
@@ -126,6 +135,17 @@ export default function ChatRoom({ navigation, route }) {
       </View>
     );
   };
+
+  const MyPopover = () => (
+    <Menu renderer={Popover} rendererProps={{ preferredPlacement: "bottom" }}>
+      <MenuTrigger style={styles.menuTrigger}>
+        <Text style={styles.triggerText}>{"\u263A"}</Text>
+      </MenuTrigger>
+      <MenuOptions style={styles.menuOptions}>
+        <Text style={styles.contentText}>Hello world!</Text>
+      </MenuOptions>
+    </Menu>
+  );
 
   return (
     <View style={styles.main}>
