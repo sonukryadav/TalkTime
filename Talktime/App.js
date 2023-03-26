@@ -1,24 +1,26 @@
-import React, { useEffect } from "react";
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AppS from './AppS';
-import Context1 from "./components/ContextS/Context";
-import store from "./components/ReduxToolkitS/Store";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
 import { Provider } from "react-redux";
+import StackNavigator from "./navigation/StackNavigation";
+import { MenuProvider } from "react-native-popup-menu";
+
+import store from "./components/ReduxToolkitS/Store";
+import AppS from "./AppS";
+
+import { AuthContextProvider } from "./contextHelper/authContext";
 
 export default function App() {
-
   return (
-    <>
-      <Provider store={store}>
-        <Context1>
+    <Provider store={store}>
+      <AuthContextProvider>
+        <MenuProvider>
           <AppS />
-          <StatusBar style="auto" />
-        </Context1>
-      </Provider>
-    </>
+          android.os.Bundle;
+        </MenuProvider>
+      </AuthContextProvider>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
