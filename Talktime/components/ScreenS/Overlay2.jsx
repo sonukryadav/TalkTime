@@ -98,7 +98,7 @@ const Overlay2 = () => {
                 <TextInput
                   style={styles.input}
                   placeholder="Enter your mobile number"
-                  value={inp.mobile1}
+                  value={`${inp.mobile1}`}
                   onChangeText={(text) => ins("mobile1", text)}
                   keyboardType="phone-pad"
                 />

@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, FlatList } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, FlatList, Image } from "react-native";
 import React, { useContext, useState } from "react";
 import Contacts from '../../components/ScreenS/Contacts'
 import { Feather } from "@expo/vector-icons";
