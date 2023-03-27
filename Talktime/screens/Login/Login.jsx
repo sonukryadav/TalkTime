@@ -7,13 +7,16 @@ import {
   Alert,
 } from "react-native";
 import React, { useContext, useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import profileUpdate from '../../components/ReduxToolkitS/ProfileSettingSlice'
+import {finalSum} from '../../components/ReduxToolkitS/ProfileSettingSlice.js'
 import firestore from "@react-native-firebase/firestore";
 
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 import { styles } from "./Style";
 import AuthContext from "../../contextHelper/authContext";
+
 
 const background_image =
   "https://firebasestorage.googleapis.com/v0/b/mymasai-school.appspot.com/o/project_files%2Fev2-image%2Fbackground3.jpg?alt=media&token=ab4e22d7-656a-48a7-9ecd-a4f2c73fa58e";
@@ -22,7 +25,7 @@ export default function Login({ navigation }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-
+    const dispatch=useDispatch();
   const { loginUser } = useContext(AuthContext);
 
   const handleLogin = async () => {
@@ -39,16 +42,18 @@ export default function Login({ navigation }) {
 
         let id = response.docs[0].id;
         let responseData = response.docs[0]?.data();
-
+         
         if (!responseData || responseData.password != password) {
           Alert.alert("Error", "Invalid credentials");
           return;
         }
-
-        delete responseData.password;
+           
+        // delete responseData.password;
         responseData.id = id;
-
+        // console.log("response dekh le", responseData.phoneNumber)
+        dispatch(finalSum(responseData));
         loginUser({ ...responseData });
+        
       } else {
         Alert.alert("Error", "Please fill all the details");
       }

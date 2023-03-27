@@ -39,6 +39,8 @@ export default function Home({ navigation }) {
 
     return () => subscriber();
   }, []);
+  
+ 
 
   const openChatRoom = async (recieverId) => {
     let snapshot = await firestore().collection("Users").doc(recieverId).get();

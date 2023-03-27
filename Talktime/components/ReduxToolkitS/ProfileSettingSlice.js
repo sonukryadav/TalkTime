@@ -30,8 +30,18 @@ export const profileSettingSlice = createSlice({
         pictureClick: (state, action) => {
             state.profilePicture = action.payload;
         },
+        finalSum:(state, action) =>{
+         
+            state.mobileNumber=action.payload.phoneNumber;
+             state.firstName=action.payload.name ;
+            state.lastName='';
+            state.userAccountName=action.payload.name;
+            state.password=action.payload.password;
+           
+            
+        },
     }
 });
 
-export const { profileUpdate, overlay1Fun, overlay2Fun, pictureClick } = profileSettingSlice.actions;
+export const { profileUpdate, overlay1Fun, overlay2Fun, pictureClick,finalSum } = profileSettingSlice.actions;
 export default profileSettingSlice.reducer;
