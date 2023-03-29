@@ -31,14 +31,11 @@ export const profileSettingSlice = createSlice({
             state.profilePicture = action.payload;
         },
         finalSum:(state, action) =>{
-         
             state.mobileNumber=action.payload.phoneNumber;
-             state.firstName=action.payload.name ;
+            state.firstName=action.payload.name ;
             state.lastName='';
             state.userAccountName=action.payload.name;
-            state.password=action.payload.password;
-           
-            
+            state.password = action.payload.password;
         },
     }
 });
